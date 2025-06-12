@@ -2,34 +2,62 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+form, button, label, input {
+    font-family: inherit;
+}
+
 body {
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
     align-items: center;
+    --gray: #ccc;
+    min-width: 925px;
 }
 
-button {
-    border:solid #ccc 3px;
+.add {
+    border:solid var(--gray) 3px;
     border-radius: 50px;
     padding: 0.75rem 1.75rem;
     font-size: 1rem;
 }
 
+.add:hover {
+    background-color: #e2e2e2;
+}
+
 table {
     border-collapse: separate;
-    border:solid #ccc 1px;
     border-radius: 12px;
     border-spacing: 0;
+    
 }
 
 th, td {
     padding: 1rem;
-    border:solid #ccc 1px;
+    border: solid var(--gray) 1px;
 }
 
-th:first-child {
+th {
+    border-top: solid var(--gray) 2px;
+}
+
+th:nth-child(2),
+tbody td:nth-child(2) {
+    border-left: solid var(--gray) 2px;
+}
+
+tbody tr:last-child td:not(:first-child) {
+    border-bottom: solid var(--gray) 2px;
+}
+
+th:last-child, 
+tbody td:last-child {
+    border-right: solid var(--gray) 2px;
+}
+
+th:nth-child(2) {
     border-top-left-radius: 12px;
 }
 
@@ -37,10 +65,123 @@ th:last-child {
     border-top-right-radius: 12px;
 }
 
-tbody tr:last-child td:first-child {
+tbody tr:last-child td:nth-child(2) {
     border-bottom-left-radius: 12px;
 }
 
 tbody tr:last-child td:last-child {
     border-bottom-right-radius: 12px;
+}
+
+dialog {
+    border: 4px solid var(--gray);
+    border-radius: 12px;
+    position: relative;
+    padding: 1rem 1rem 1rem;
+}
+
+.close {
+    aspect-ratio: 1/1;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    height: 32px;
+    font-weight: bold;
+    font-size: 1rem;
+    border: 0;
+}
+
+dialog h1 {
+    font-size: 1.8rem;
+    margin: 0.75rem 0 1.5rem;
+}
+
+form .container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+form label {
+    font-weight: 550;
+    margin-bottom: 0.25rem;
+    font-size: rem;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+input:not([type="checkbox"]) {
+    appearance: none;
+    border-radius: 5px;
+    border: 1px solid #9c9c9c;
+    height: 1.2rem;
+    padding: 0.25rem;
+}
+
+input:focus {
+    outline: none;
+    border: 2px solid rgb(29, 138, 240);
+}
+
+input[type="checkbox"] {
+    align-self:first baseline;
+}
+
+button[type="submit"] {
+    background-color: rgb(28, 117, 235);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+}
+
+.trash-cell {
+    position: relative;
+    width: 1px;            /* Smallest possible visible width */
+    padding: 0;
+    overflow: visible;     /* Let icon hang outside */
+    border: none;          /* Optional: removes any border that may show */
+}
+
+.trash {
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    height: 1.8rem;
+    left: -2.6rem;
+    top: 0.5rem;
+}
+
+.read {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrow {
+    aspect-ratio: 1 / 1;
+    height: 1.25rem;
+}
+
+dialog:last-of-type form .container {
+    width: 300px;
+    gap: 0.75rem;
+}
+
+dialog:last-of-type form .container div {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+dialog:last-of-type form .container input {
+    aspect-ratio: 1/1;
+    width: 1rem;
+    margin: 0;
 }

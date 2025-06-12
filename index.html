@@ -8,13 +8,43 @@
     <title>Document</title>
 </head>
 <body>
-    <button>
-        Add Book
-    </button>
+    <dialog>
+        <button class="close">x</button>
+        <h1>Book Information</h1>
+        <form action="">
+            <div class="container">
+                <label for="title">Title:</label>
+                <input type="text" name="title" id="title" required>
+                <label for="author">Author:</label>
+                <input type="text" name="author" id="author" required>
+                <label for="numpages">Number of Pages:</label>
+                <input type="number" name="numpages" id="numpages" required>
+                <label for="haveread">Have you read the book?</label>
+                <input type="checkbox" name="haveread" id="haveread" required>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </dialog>
 
+    <dialog>
+        <button class="close">x</button>
+        <h1>Edit information</h1>
+        <form action="">
+            <div class="container">
+                <div>
+                    <label for="readchange">Have you read the book?</label>
+                    <input type="checkbox" name="readchange" id="readchange" required>
+                </div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </dialog>
+
+    <button class="add">Add Book</button>
     <table>
         <thead>
             <tr>
+                <th class="trash-cell"></th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Number of Pages</th>
@@ -23,7 +53,6 @@
             </tr>
         </thead>
         <tbody>
-
         </tbody>
     </table>
 </body>
