@@ -11,7 +11,7 @@
     <dialog>
         <button class="close">x</button>
         <h1>Book Information</h1>
-        <form action="">
+        <form method="dialog" action="#" class="addForm">
             <div class="container">
                 <label for="title">Title:</label>
                 <input type="text" name="title" id="title" required>
@@ -20,7 +20,7 @@
                 <label for="numpages">Number of Pages:</label>
                 <input type="number" name="numpages" id="numpages" required>
                 <label for="haveread">Have you read the book?</label>
-                <input type="checkbox" name="haveread" id="haveread" required>
+                <input type="checkbox" name="haveread" id="haveread">
                 <button type="submit">Submit</button>
             </div>
         </form>
@@ -29,11 +29,11 @@
     <dialog>
         <button class="close">x</button>
         <h1>Edit information</h1>
-        <form action="">
+        <form method="dialog" action="#" class="editForm">
             <div class="container">
                 <div>
                     <label for="readchange">Have you read the book?</label>
-                    <input type="checkbox" name="readchange" id="readchange" required>
+                    <input type="checkbox" name="readchange" id="readchange" class="editCheck">
                 </div>
                 <button type="submit">Submit</button>
             </div>

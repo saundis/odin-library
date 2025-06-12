@@ -1,15 +1,20 @@
-let myLibrary = [];
 const tbody = document.querySelector('tbody');
 const addButton = document.querySelector('.add');
 const dialog = document.querySelector('dialog:first-of-type');
 const editDialog = document.querySelector('dialog:last-of-type');
 const closeButton = document.querySelectorAll('.close');
-const submitButton = document.querySelector('button[type="submit"]');
+const formAdd = document.querySelector('.addForm');
+const formEdit = document.querySelector('.editForm');
 
 const titleInput = document.querySelector('input[id="title"]');
 const authorInput = document.querySelector('input[id="author"]');
 const numpagesInput = document.querySelector('input[id="numpages"]');
 const havereadInput = document.querySelector('input[id="haveread"]');
+const editCheck = document.querySelector('.editCheck');
+let currentBook;
+let readStatus;
+
+let myLibrary = [];
 
 function Book(title, author, numberOfPages, haveRead, id) {
     this.id = id;
@@ -17,6 +22,10 @@ function Book(title, author, numberOfPages, haveRead, id) {
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.haveRead = haveRead;
+}
+
+Book.prototype.toggleRead = function(status) {
+    this.haveRead = status;
 }
 
 function addBookToLibrary(title, author, numberOfPages, haveRead) {
@@ -72,13 +81,17 @@ function displayBooks(book, ID) {
     tbody.append(newRow);
 
     function editReadStatus() {
+        if (book.haveRead) {
+            editCheck.checked = true;
+        }
+        currentBook = book;
+        readStatus = statusDiv;
         editDialog.showModal();
     }
 
     function deleteRow() {
         for (let i = 0; i < myLibrary.length; i++) {
             if (myLibrary[i].id == ID) {
-                console.log('ok');
                 myLibrary.splice(i, 1);
                 newRow.remove();
                 trash.removeEventListener('click', deleteRow);
@@ -91,26 +104,35 @@ function displayBooks(book, ID) {
     editCell.addEventListener('click', editReadStatus);
 }
 
-submitButton.addEventListener('click', (event) => {
+formAdd.addEventListener('submit', (event) => {
     titleText = titleInput.value;
     authorText = authorInput.value;
     numPagesText = numpagesInput.value;
     haveReadText = havereadInput.checked;
-    console.log(`${titleText} ${authorText} ${numPagesText} ${haveReadText}`)
 
     if (titleText !== '' && authorText !== '' && numPagesText !== '') {
-        event.preventDefault()
         addBookToLibrary(titleText, authorText, numPagesText, haveReadText);
     }
 })
 
+formEdit.addEventListener('submit', (event) => {
+    let status = editCheck.checked ? true : false;
+
+    currentBook.toggleRead(status);
+    readStatus.textContent = status;
+})
 
 addButton.addEventListener('click', () => {
+    titleInput.value = '';
+    authorInput.value = '';
+    numpagesInput.value = '';
+    havereadInput.checked = false;
     dialog.showModal();
 });
 
 for (let close of closeButton) {
     close.addEventListener('click', () => {
+        console.log('ok2');
         dialog.close();
         editDialog.close();
     })
